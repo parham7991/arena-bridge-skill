@@ -13,6 +13,8 @@ PROXY=""
 DATA_DIR="${DATA_DIR:-$HOME/.arena-bridge}"
 NO_LOGIN=0
 CHROME=""
+WARP=0
+SOCKS_PORT="${SOCKS_PORT:-40000}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -24,6 +26,7 @@ while [[ $# -gt 0 ]]; do
     --data-dir) DATA_DIR="$2"; shift 2 ;;
     --chrome) CHROME="$2"; shift 2 ;;
     --no-login) NO_LOGIN=1; shift ;;
+    --warp) WARP=1; shift ;;
     *) echo "unknown arg: $1" >&2; exit 2 ;;
   esac
 done
@@ -38,6 +41,15 @@ echo "    node $(node -v) (major $NODE_MAJOR)"
 if (( NODE_MAJOR < 18 )); then echo "ERROR: need node >= 18" >&2; exit 1; fi
 
 echo "==> [2/7] Install playwright (with retries) + chromium"
+if (( WARP )); then
+  echo "    --warp: starting Cloudflare WARP proxy first (avoids CF challenges)"
+  if ! bash "$SRC_DIR/warp.sh" --port "$SOCKS_PORT"; then
+    echo "WARN: WARP setup failed; continuing without proxy (may hit Cloudflare)" >&2
+  else
+    PROXY="socks5://127.0.0.1:$SOCKS_PORT"
+    echo "    using proxy: $PROXY"
+  fi
+fi
 if [[ ! -d "$SRC_DIR/node_modules/playwright" ]]; then
   for i in 1 2 3; do
     (cd "$SRC_DIR" && npm install playwright --no-audit --no-fund) && break
@@ -104,6 +116,19 @@ else
 fi
 
 echo "==> [5/7] Start bridge"
+if (( NO_LOGIN )); then
+  echo "    --no-login: bridge NOT started (no credentials yet)."
+  echo "    Later, run:"
+  echo "      node bin/login.mjs --email <e> --password <p>"
+  echo "      bash run.sh   (or: node src/index.mjs)"
+  echo
+  echo "==============================================================="
+  echo " arena-bridge v2 installed (infra only, no login)."
+  echo " Bridge key : $KEY   (also stored in $ENV_FILE)"
+  echo " Run login + start when you have your credentials."
+  echo "==============================================================="
+  exit 0
+fi
 pkill -f "$SRC_DIR/src/index.mjs" 2>/dev/null || true
 sleep 1
 (cd "$SRC_DIR" && DATA_DIR="$DATA_DIR" ARENA_AGENT_BRIDGE_KEY="$KEY" \

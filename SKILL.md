@@ -98,6 +98,37 @@ offer these alternatives and ask the user which they want:
 - **Deferred:** install with `--no-login` (infra only) and let the owner run
   `bin/login.mjs` themselves later.
 
+## WARP proxy (recommended: avoids Cloudflare challenges)
+
+Arena's UI is behind Cloudflare; heavy automation from one IP can hit
+"Just a moment…" challenges. This skill can set up a **free Cloudflare WARP
+proxy** (the same service official 1.1.1.1 clients use) so the browser traffic
+goes out through a clean Cloudflare IP.
+
+```bash
+# Option A: install everything with WARP
+bash install.sh --warp --email you@example.com --password '...'
+
+# Option B: just set up WARP (then start the bridge with the proxy)
+bash warp.sh
+export ARENA_AGENT_PROXY=socks5://127.0.0.1:40000
+node src/index.mjs
+```
+
+`warp.sh`:
+1. Downloads `wireproxy` (WireGuard → SOCKS5) into `~/.warp/`.
+2. Registers a **free WARP account** via Cloudflare's own API
+   (`bin/warp-setup.mjs`, pure Node — X25519 keypair + `POST /v0a2159/reg`).
+3. Writes `~/.warp/wireproxy.conf` (mode 0600) and starts the SOCKS5 proxy on
+   `127.0.0.1:40000`.
+4. Verifies the exit IP.
+
+Notes:
+- The proxy is only used for the automation browser; your other traffic is
+  unaffected. No account abuse: one WARP account, low rate.
+- `warp-setup.mjs` is pure Node — no Python/pip needed.
+- If WARP fails, the install continues without it (with a warning).
+
 ## Manual install (what the agent should run, step by step)
 
 ```bash
