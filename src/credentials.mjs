@@ -40,10 +40,6 @@ export class CredentialStore {
     fs.chmodSync(this.filePath, 0o600);
   }
 
-  primary() {
-    return [...this.accounts].sort((a, b) => Number(a.priority || 1) - Number(b.priority || 1))[0] || null;
-  }
-
   /** Ensure credentials exist: migrate from omni (opt-in), otherwise a clear error. */
   ensure({ migrateFromOmni = false } = {}) {
     if (this.primary()) return this.primary();
@@ -60,7 +56,7 @@ export class CredentialStore {
     const existing = this.accounts.find((a) => a.email.toLowerCase() === String(email).toLowerCase());
     const entry = {
       email: String(email),
-      cookieHeader: String(cookieHeader),
+      cookieHeader: this.#encryptCookie(String(cookieHeader)),
       loginSecret:
         typeof password === "string" && password
           ? encrypt(JSON.stringify({ email: String(email), password }), this.key)
@@ -78,10 +74,22 @@ export class CredentialStore {
   replaceCookie(email, cookieHeader) {
     const account = this.accounts.find((a) => a.email.toLowerCase() === String(email).toLowerCase());
     if (!account) return false;
-    account.cookieHeader = String(cookieHeader);
+    account.cookieHeader = this.#encryptCookie(String(cookieHeader));
     account.updatedAt = new Date().toISOString();
     this.save();
     return true;
+  }
+
+  /** Consumers get a shallow copy with the cookieHeader decrypted. */
+  primary() {
+    const account = [...this.accounts].sort((a, b) => Number(a.priority || 1) - Number(b.priority || 1))[0];
+    if (!account) return null;
+    return { ...account, cookieHeader: decrypt(account.cookieHeader, this.key) };
+  }
+
+  #encryptCookie(header) {
+    if (!header || header.startsWith("enc:v1:")) return header; // avoid double encryption
+    return encrypt(header, this.key);
   }
 
   loginSecretFor(account) {
