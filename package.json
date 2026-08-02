@@ -1,6 +1,6 @@
 {
   "name": "arena-bridge-skill",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "type": "module",
   "private": true,
   "description": "Arena Agent Bridge Skill — login to arena.ai with email/password and run real Agent sessions (multi-agent team-leader ready). OpenAI-compatible API.",
