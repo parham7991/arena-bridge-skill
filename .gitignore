@@ -1,0 +1,7 @@
+node_modules/
+.env
+.arena-bridge/
+*.log
+credentials.json
+sessions.json
+/tmp/
