@@ -29,6 +29,20 @@
 
 ---
 
+## 🚀 Copy-Paste Arena prompt (fastest — no terminal needed)
+
+1. Open: **https://raw.githubusercontent.com/parham7991/arena-account-bridge/main/prompts/arena-install-prompt.md**
+2. **Copy the whole text.**
+3. Paste it into any **Arena chat (Agent Mode)** and press send.
+4. The agent auto-installs everything, asks for your email/password **once**,
+   logs into your **own** account, starts the bridge (with WARP), passes the
+   self-test, and reports **READY**.
+
+> Want the full **Team Leader** setup too? Use the team prompt instead:
+> https://raw.githubusercontent.com/parham7991/arena-team-agent/main/prompts/arena-team-prompt.md
+
+---
+
 ## ⚡ Quick Start
 
 ```bash
