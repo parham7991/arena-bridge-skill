@@ -34,12 +34,12 @@ infrastructure required.** It runs on the machine where the agent lives.
 
 ```bash
 # ONE-LINER (no git needed)
-curl -fsSL https://raw.githubusercontent.com/parham7991/arena-bridge-skill/main/bootstrap.sh | \
+curl -fsSL https://raw.githubusercontent.com/parham7991/arena-account-bridge/main/bootstrap.sh | \
   ARENA_EMAIL=you@example.com ARENA_PASSWORD='your-password' bash
 
 # or with git
-git clone https://github.com/parham7991/arena-bridge-skill.git
-cd arena-bridge-skill
+git clone https://github.com/parham7991/arena-account-bridge.git
+cd arena-account-bridge
 bash install.sh --email you@example.com --password 'your-password'
 ```
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # bootstrap.sh — ONE-LINE installer for the arena-bridge skill (no git needed).
-#   curl -fsSL https://raw.githubusercontent.com/parham7991/arena-bridge-skill/main/bootstrap.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/parham7991/arena-account-bridge/main/bootstrap.sh | bash
 #   (pass --email/--password/--no-login after the pipe via env: ARENA_EMAIL / ARENA_PASSWORD)
 set -euo pipefail
 
-REPO="parham7991/arena-bridge-skill"
+REPO="parham7991/arena-account-bridge"
 BRANCH="${BRANCH:-main}"
 TMP="$(mktemp -d)"
 
@@ -19,7 +19,7 @@ fi
 
 mkdir -p "$TMP/x"
 tar xzf "$TMP/skill.tgz" -C "$TMP/x"
-SKILL_DIR="$(find "$TMP/x" -maxdepth 1 -type d -name 'arena-bridge-skill-*' | head -1)"
+SKILL_DIR="$(find "$TMP/x" -maxdepth 1 -type d -name 'arena-account-bridge-*' | head -1)"
 if [[ -z "$SKILL_DIR" ]]; then echo "ERROR: extract failed" >&2; exit 1; fi
 
 echo "==> Running install.sh"

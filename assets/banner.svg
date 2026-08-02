@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="Arena Account Bridge — AraTmDev by Parham_7991">
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="18%" r="95%">
+      <stop offset="0%" stop-color="#1c1344"/>
+      <stop offset="55%" stop-color="#0F0F23"/>
+      <stop offset="100%" stop-color="#070719"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="45%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#F43F5E"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#7C3AED" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="pill1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#5B21B6"/>
+    </linearGradient>
+    <linearGradient id="pill2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F43F5E"/>
+      <stop offset="100%" stop-color="#BE123C"/>
+    </linearGradient>
+    <linearGradient id="pill3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+
+  <!-- floating hexagons -->
+  <g fill="none" stroke="#7C3AED" stroke-opacity="0.35">
+    <path d="M1180 120 l30 -17 30 17 v34 l-30 17 -30 -17 z" stroke-width="2"/>
+    <path d="M60 480 l26 -15 26 15 v30 l-26 15 -26 -15 z" stroke-width="2" stroke-opacity="0.25"/>
+    <path d="M1010 520 l20 -11 20 11 v23 l-20 11 -20 -11 z" stroke-width="2" stroke-opacity="0.3"/>
+  </g>
+  <g fill="#7C3AED" fill-opacity="0.5">
+    <circle cx="1210" cy="120" r="5"/>
+    <circle cx="86" cy="480" r="4"/>
+    <circle cx="1030" cy="520" r="4"/>
+    <circle cx="240" cy="150" r="3"/>
+    <circle cx="1050" cy="180" r="3"/>
+  </g>
+  <g stroke="#A78BFA" stroke-opacity="0.25" fill="none" stroke-width="2">
+    <path d="M1210 120 v-40 h40"/>
+    <path d="M86 480 v40 h-30"/>
+    <path d="M1030 520 v-30 h-40"/>
+  </g>
+
+  <!-- agent robot + connection -->
+  <g transform="translate(150,215)" filter="url(#glow)">
+    <rect x="0" y="30" width="150" height="120" rx="22" fill="#151531" stroke="#7C3AED" stroke-width="4"/>
+    <rect x="66" y="0" width="18" height="30" rx="6" fill="#A78BFA"/>
+    <circle cx="75" cy="0" r="10" fill="#F43F5E"/>
+    <rect x="34" y="72" width="34" height="26" rx="8" fill="#7C3AED"/>
+    <rect x="82" y="72" width="34" height="26" rx="8" fill="#7C3AED"/>
+    <rect x="42" y="79" width="14" height="12" rx="4" fill="#0F0F23"/>
+    <rect x="94" y="79" width="14" height="12" rx="4" fill="#0F0F23"/>
+    <rect x="50" y="118" width="50" height="10" rx="5" fill="#A78BFA"/>
+    <rect x="-14" y="78" width="14" height="34" rx="6" fill="#7C3AED"/>
+    <rect x="150" y="78" width="14" height="34" rx="6" fill="#7C3AED"/>
+    <path d="M150 95 h64 v72 h40" stroke="#10B981" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="254" cy="167" r="14" fill="#10B981"/>
+    <path d="M254 181 v38" stroke="#10B981" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="254" cy="219" r="7" fill="#A78BFA"/>
+  </g>
+
+  <!-- title -->
+  <text x="420" y="195" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="62" font-weight="800" fill="url(#title)" filter="url(#glow)">ARENA ACCOUNT BRIDGE</text>
+  <!-- bilingual subtitle -->
+  <text x="422" y="240" font-family="'Segoe UI', system-ui, sans-serif" font-size="24" fill="#A78BFA" font-weight="600">Connect your Arena (arena.ai) account · اتصال به اکانت ارنا</text>
+
+  <rect x="420" y="268" width="580" height="3" rx="1.5" fill="url(#title)" opacity="0.8"/>
+
+  <!-- badges -->
+  <g font-family="'Segoe UI', system-ui, sans-serif" font-size="20" font-weight="700">
+    <rect x="420" y="296" width="252" height="48" rx="24" fill="url(#pill1)"/>
+    <text x="432" y="327" fill="#ffffff">DEV &#160; Parham_7991</text>
+    <rect x="692" y="296" width="308" height="48" rx="24" fill="url(#pill2)"/>
+    <text x="704" y="327" fill="#ffffff">TEAM &#160; AraTmDev</text>
+  </g>
+
+  <!-- feature pills -->
+  <g font-family="'Segoe UI', system-ui, sans-serif" font-size="18" font-weight="600">
+    <rect x="420" y="372" width="180" height="40" rx="20" fill="url(#pill3)"/>
+    <text x="436" y="399" fill="#04251A">email + password</text>
+    <rect x="616" y="372" width="170" height="40" rx="20" fill="url(#pill1)"/>
+    <text x="632" y="399" fill="#ffffff">Multi-Agent</text>
+    <rect x="802" y="372" width="160" height="40" rx="20" fill="#27273B" stroke="#A78BFA" stroke-width="2"/>
+    <text x="816" y="399" fill="#E5E7EB">WARP-ready</text>
+  </g>
+
+  <!-- persian line (not a slogan, just bilingual tagline) -->
+  <text x="420" y="470" font-family="Tahoma, 'Segoe UI', sans-serif" font-size="24" font-weight="700" fill="#F59E0B">لاگین خودکار با ایمیل و پسورد · اجرای Agent های واقعی</text>
+  <text x="422" y="505" font-family="'Segoe UI', system-ui, sans-serif" font-size="17" fill="#9CA3AF">One skill · One command · Your Arena account, fully automated.</text>
+
+  <!-- footer -->
+  <text x="420" y="565" font-family="'SF Mono', Consolas, monospace" font-size="15" fill="#6B7280">arena-account-bridge · v5.4.0 · node ≥ 18 · standalone · by AraTmDev</text>
+</svg>
